@@ -5,11 +5,9 @@
   	<meta http-equiv="X-UA-Compatible" content="IE=edge">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   	<link rel="stylesheet" href="{{ url_for('static', filename='./css/style.css') }}">
-  	<title>
-    	{% block title %}
+    	{% block head %}
 
     	{% endblock %}
-  	</title>
 </head>
 <body>
 
@@ -34,9 +32,17 @@
     
     <div class="profile-buttons">
       	<a href="#">Login</a>
-      	<a href="#">Sign Up</a>
+      	<a href="{{ url_for('register_page') }}">Sign Up</a>
     </div>
 	</div>
+
+	{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages  %}
+			{% for category, message in messages %}
+				<h6>{{ message }}</h6>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
 	
 	{% block content %}
 	

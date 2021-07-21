@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Register Page
+{% endblock %}
+
+{% block content %}
+    <div class="register-form">
+        <h1>You're on your way to getting new books</h1>
+        <p>All we need is your name and email!</p>
+    
+        
+        <form method="POST" class="">
+            {{ form.hidden_tag() }}
+
+            {{ form.name.label() }}
+            {{ form.name(class="", placeholder="Name") }}
+
+            {{ form.email_address.label() }}
+            {{ form.email_address(class="", placeholder="Email Address") }}
+
+            {{ form.password1.label() }}
+            {{ form.password1(class="", placeholder="Password") }}
+
+            {{ form.password2.label() }}
+            {{ form.password2(class="", placeholder="Confirm Password") }}
+
+            {{ form.submit(class="") }}
+
+            <div class="checkbox mb-3">
+                <h6>Already have an account?</h6>
+                <a class="" href="#">Login here</a>
+             </div>
+
+        </form>
+
+    </div>
+
+    <style>
+        .register-form{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+{% endblock %}
