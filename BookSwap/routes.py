@@ -7,7 +7,6 @@ from BookSwap.forms import RegisterForm
 
 @app.route('/')
 @app.route('/home')
-@login_manager.user_loader
 def home_page():
     return render_template('home.html')
 
@@ -21,7 +20,7 @@ def register_page():
         db.session.add(user_to_create)
         db.session.commit()
         login_user(user_to_create)
-        flash(f"Account created successfully! You are now logged in as {user_to_create.username}", category='success')
+        flash(f"Account created successfully! You are now logged in as {user_to_create.name}", category='success')
         return redirect(url_for('home_page'))
     if form.errors != {}: #If there are errors from the validations
         for err_msg in form.errors.values():

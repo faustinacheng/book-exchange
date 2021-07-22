@@ -23,7 +23,7 @@ class User(db.Model, UserMixin):
         return self.password
 
     @password.setter
-    def set_password(self, text_password):
+    def password(self, text_password):
         self.password_hash = bcrypt.generate_password_hash(text_password).decode('utf-8')
 
     def check_password(self, attempted_password):
