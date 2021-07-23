@@ -12,28 +12,28 @@
 <body>
 
 	<div class="navbar">
-    	<div class="logo">
-      		<h1>Book Exchange</h1>
-    	</div>
+      	<a href="{{ url_for('home_page') }}" class="logo">
+			<h1>Book Exchange</h1>
+		</a>
     
-    <div class="nav-links">
-      	<ul>
-        	<li>
-        		<a href="#">Home</a>
-        	</li>
-        	<li>
-        		<a href="#">Add Book</a>
-        	</li>
-        	<li>
-        		<a href="#">Search Books</a>
-        	</li>
-      	</ul>
-    </div>
-    
-    <div class="profile-buttons">
-      	<a href="#">Login</a>
-      	<a href="{{ url_for('register_page') }}">Sign Up</a>
-    </div>
+		<div class="nav-links">
+			<ul>
+				<li>
+					<a href="{{ url_for('home_page') }}">Home</a>
+				</li>
+				<li>
+					<a href="#">Add Book</a>
+				</li>
+				<li>
+					<a href="#">Search Books</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="profile-buttons">
+			<a href="#">Login</a>
+			<a href="{{ url_for('register_page') }}">Sign Up</a>
+		</div>
 	</div>
 
 	{% with messages = get_flashed_messages(with_categories=true) %}
