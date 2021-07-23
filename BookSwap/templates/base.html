@@ -29,11 +29,19 @@
 				</li>
 			</ul>
 		</div>
+
+		{% if current_user.is_authenticated %}
+			<div class="profile-buttons">
+				<a href="#">Hey, {{ current_user.name }}</a>
+				<a href="#">Log Out</a>
+			</div>
+		{% else %}
+			<div class="profile-buttons">
+				<a href="{{ url_for('login_page') }}">Login</a>
+				<a href="{{ url_for('register_page') }}">Sign Up</a>
+			</div>
+		{% endif %}
 		
-		<div class="profile-buttons">
-			<a href="#">Login</a>
-			<a href="{{ url_for('register_page') }}">Sign Up</a>
-		</div>
 	</div>
 
 	{% with messages = get_flashed_messages(with_categories=true) %}

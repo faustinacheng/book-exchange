@@ -1,35 +1,29 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Register Page
+    Login
 {% endblock %}
 
 {% block content %}
     <div class="register-form">
 
         <h1>You're on your way to getting new books</h1>
-        <p>All we need is your name and email!</p>
-    
+        <p>All we need is your email!</p>
+
         <form method="POST" class="">
             {{ form.hidden_tag() }}
-
-            {{ form.name.label() }}
-            {{ form.name(class="", placeholder="Name") }}
 
             {{ form.email_address.label() }}
             {{ form.email_address(class="", placeholder="Email Address") }}
 
-            {{ form.password1.label() }}
-            {{ form.password1(class="", placeholder="Password") }}
-
-            {{ form.password2.label() }}
-            {{ form.password2(class="", placeholder="Confirm Password") }}
+            {{ form.password.label() }}
+            {{ form.password(class="", placeholder="Password") }}
 
             {{ form.submit(class="") }}
 
             <div class="checkbox mb-3">
-                <p>Already have an account?</p><a class="" href="{{ url_for('login_page') }}">Login here</a>
-             </div>
+                <p>Not Registered?</p><a class="" href="{{ url_for('register_page') }}">Sign Up here</a>
+            </div>
 
         </form>
 
@@ -50,5 +44,4 @@
             flex-direction: column;
         }
     </style>
-
 {% endblock %}

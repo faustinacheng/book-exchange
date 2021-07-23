@@ -30,7 +30,7 @@ class User(db.Model, UserMixin):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
 
     def __repr__(self):
-        return f'{self.email_address}'
+        return f'User Email Address: {self.email_address}'
 
 class Book(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
@@ -41,5 +41,5 @@ class Book(db.Model):
     condition = db.Column(db.String(length=20), nullable=True, unique=False)
 
     def __repr__(self):
-        return f'{self.title}'
+        return f'Book Title: {self.title}'
     
