@@ -9,5 +9,6 @@ app.config['SECRET_KEY'] = 'af532f4f0eae5f1b561af82a'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
+login_manager.login_view = 'login_page'
 
 from BookSwap import routes

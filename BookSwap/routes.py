@@ -25,6 +25,12 @@ def login_page():
 
     return render_template('login.html', form=form)
 
+@app.route('/logout')
+def logout_page():
+    logout_user()
+    flash('You have been Logged Out!', category='')
+    return redirect(url_for('home_page'))
+
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
     form = RegisterForm()
@@ -39,6 +45,6 @@ def register_page():
         return redirect(url_for('home_page'))
     if form.errors != {}: #If there are errors from the validations
         for err_msg in form.errors.values():
-            flash(f'There was an error with creating a user: {err_msg}', category='danger')
+            flash(f'There was an error with creating a user: {err_msg}', category='')
 
     return render_template('register.html', form=form)
