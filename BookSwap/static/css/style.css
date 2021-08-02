@@ -7,6 +7,7 @@
     --clr-neutral-900: #212121;
 
     --clr-primary-200: #e6edfa;
+    --clr-primary-400: #0048ff;
     --clr-primary-500: #13398d;
     --clr-primary-700: #051c4e;
 
@@ -38,7 +39,7 @@ a {
 
 a:hover,
 a:focus {
-    color: var(--clr-primary-500)
+    color: var(--clr-primary-400)
 }
 
 h1, h2, h3 {
@@ -144,6 +145,12 @@ img {
     font-size: 1.6em;
 }
 
+.logo:hover {
+    background: linear-gradient(90deg, hsla(191, 75%, 60%, 1) 0%, hsla(248, 87%, 36%, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 ul {
     display: flex;
 }
@@ -171,7 +178,7 @@ li a {
 }
 
 .button-style:hover,
-.button-style:focus{
+.button-style:focus {
     /*background: var(--clr-primary-700);*/
     background: linear-gradient(90deg, hsla(191, 75%, 60%, 1) 0%, hsla(248, 87%, 36%, 1) 100%);
     color: var(--clr-neutral-100);
