@@ -146,9 +146,13 @@ button:focus {
 }
 
 .main-ribbon {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    justify-content: center;
     padding: 3rem 0;
     margin-block: auto;
+    height: 70vh;
 }
 
 @media (min-width: 50em) {
@@ -236,7 +240,7 @@ input {
 }
 
 .form--narrow {
-    width: max(60%, 25em);
+    width: max(65%, 27em);
 }
 
 .form--narrow > * + *{

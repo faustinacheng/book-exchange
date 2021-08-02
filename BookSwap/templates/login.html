@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 
-{% block title %}
-Login
-{% endblock %}
-
 {% block content %}
 
 <div class="main-ribbon bg-light">
@@ -16,12 +12,12 @@ Login
 
             <div class="form-row">
                 {{ form.email_address.label() }}
-                {{ form.email_address(class="input--narrow") }}
+                {{ form.email_address(class="input--narrow", placeholder="Email") }}
             </div>
 
             <div class="form-row">
                 {{ form.password.label() }}
-                {{ form.password(class="input--narrow") }}
+                {{ form.password(class="input--narrow", placeholder="Password") }}
             </div>
 
             {{ form.submit(class="button-style") }}
