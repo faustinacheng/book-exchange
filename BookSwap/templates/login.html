@@ -1,47 +1,34 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Login
+Login
 {% endblock %}
 
 {% block content %}
-    <div class="register-form">
 
-        <h1>You're on your way to getting new books</h1>
-        <p>All we need is your email!</p>
+<div class="main-ribbon bg-light">
+    <div class="container container--narrow">
+        <h2>You're on your way to getting new books</h2>
 
-        <form method="POST" class="">
+
+        <form method="POST" class="form--narrow">
             {{ form.hidden_tag() }}
 
-            {{ form.email_address.label() }}
-            {{ form.email_address(class="", placeholder="Email Address") }}
-
-            {{ form.password.label() }}
-            {{ form.password(class="", placeholder="Password") }}
-
-            {{ form.submit(class="") }}
-
-            <div class="checkbox mb-3">
-                <p>Not Registered?</p><a class="" href="{{ url_for('register_page') }}">Sign Up here</a>
+            <div class="form-row">
+                {{ form.email_address.label() }}
+                {{ form.email_address(class="input--narrow") }}
             </div>
 
+            <div class="form-row">
+                {{ form.password.label() }}
+                {{ form.password(class="input--narrow") }}
+            </div>
+
+            {{ form.submit(class="button-style") }}
+
+            <p>Not Registered? <a class="" href="{{ url_for('register_page') }}">Sign Up here</a></p>
+
         </form>
-
     </div>
-
-    <style>
-        .register-form{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        form{
-            display: flex;
-            flex-direction: column;
-        }
-    </style>
+</div>
 {% endblock %}

@@ -32,9 +32,9 @@
 		</div>
 
 		{% if current_user.is_authenticated %}
-			<div class="profile-buttons">
-				<a href="#">Hey, {{ current_user.name }}</a>
-				<a href="{{ url_for('logout_page') }}">Log Out</a>
+			<div>
+				<a class="button-style profile-buttons" href="#">Hey, {{ current_user.name }}</a>
+				<a class="button-style profile-buttons" href="{{ url_for('logout_page') }}">Log Out</a>
 			</div>
 		{% else %}
 			<div>

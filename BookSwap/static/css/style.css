@@ -6,7 +6,7 @@
     --clr-neutral-300: #c5c5c5;
     --clr-neutral-900: #212121;
 
-    --clr-primary-200: #fca311;
+    --clr-primary-200: #e6edfa;
     --clr-primary-500: #13398d;
     --clr-primary-700: #051c4e;
 
@@ -106,6 +106,8 @@ button,
     padding: 0.5rem 1rem;
     color: var(--clr-neutral-100);
     background: var(--clr-primary-500);
+    text-align: center;
+    border-radius: 5px;
 }
 
 button + button,
@@ -119,6 +121,7 @@ button:hover,
 button:focus {
     background: var(--clr-primary-700);
     color: var(--clr-neutral-100);
+    cursor: pointer;
 }
 
 .profile-buttons {
@@ -128,6 +131,18 @@ button:focus {
 .container {
     margin-inline: auto;
     width: min(90%, 70.5rem);
+}
+
+.container--narrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 50em) {
+    .container--narrow {
+        width: min(50%, 60rem)
+    }
 }
 
 .main-ribbon {
@@ -175,4 +190,55 @@ button:focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: none;
+    -webkit-text-fill-color: var(--clr-neutral-900);
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    transition: background-color 5000s ease-in-out 0s;
+    font-family: var(--ff-primary);
+}
+
+input {
+    background: var(--clr-neutral-100);
+    border: none;
+    vertical-align: middle;
+    font-size: 1rem;
+    border-radius: 5px;
+    line-height: 1.2rem;
+}
+
+.input--narrow {
+    padding:0.5em;
+    width: 65%;
+}
+
+.form-row {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form--narrow {
+    width: max(60%, 25em);
+}
+
+.form--narrow > * + *{
+    margin-top: 1.5rem;
 }
