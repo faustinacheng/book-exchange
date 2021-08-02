@@ -63,11 +63,68 @@ h2 {
 
 .bg-light {
     background-color: var(--clr-primary-200);
+    z-index: -1;
 }
 
 img {
     display: block;
     max-width: 100%;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}
+
+.flashed_message--success {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em;
+    background-color: rgba(73, 229, 56, 0.3);
+    padding-block: 0.3rem;
+    animation-name: fadeOut;
+    animation-duration: 3000ms;
+    animation-fill-mode: forwards;
+    z-index: 99;
+}
+
+.flashed_message--info {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em;
+    background-color: rgba(61, 126, 255, 0.3);
+    padding-block: 0.3rem;
+    animation-name: fadeOut;
+    animation-duration: 3000ms;
+    animation-fill-mode: forwards;
+    z-index: 99;
+}
+
+.flashed_message--error {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em;
+    background-color: rgb(238, 112, 112);
+    padding-block: 0.3rem;
+    z-index: 99;
+    margin-bottom: 0.2rem;
+}
+
+.close {
+    display: block;
+    float: right;
+    font-size: 1.5em;
+    font-weight: 700;
+    align-self: flex-end;
+    margin-right: 1rem;
 }
 
 .navbar {
@@ -101,7 +158,6 @@ li a {
     color: black;
 }
 
-button,
 .button-style {
     padding: 0.5rem 1rem;
     color: var(--clr-neutral-100);
@@ -110,16 +166,14 @@ button,
     border-radius: 5px;
 }
 
-button + button,
 .button-style + .button-style {
     margin-left: 0.5rem;
 }
 
 .button-style:hover,
-.button-style:focus,
-button:hover,
-button:focus {
-    background: var(--clr-primary-700);
+.button-style:focus{
+    /*background: var(--clr-primary-700);*/
+    background: linear-gradient(90deg, hsla(191, 75%, 60%, 1) 0%, hsla(248, 87%, 36%, 1) 100%);
     color: var(--clr-neutral-100);
     cursor: pointer;
 }
@@ -228,12 +282,12 @@ input {
 }
 
 .input--narrow {
-    padding:0.5em;
+    padding: 0.5em;
     width: 65%;
 }
 
 .form-row {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -243,6 +297,6 @@ input {
     width: max(65%, 27em);
 }
 
-.form--narrow > * + *{
+.form--narrow > * + * {
     margin-top: 1.5rem;
 }
