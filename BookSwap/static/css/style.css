@@ -1,18 +1,80 @@
-@import 
-url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
 
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: Mulish, sans-serif;
+:root {
+    --clr-neutral-100: #fff;
+    --clr-neutral-200: #e5e5e5;
+    --clr-neutral-300: #c5c5c5;
+    --clr-neutral-900: #212121;
+
+    --clr-primary-200: #fca311;
+    --clr-primary-500: #13398d;
+    --clr-primary-700: #051c4e;
+
+
+    --ff-primary: "Mulish", sans-serif;
+    --ff-accent: "Lato", sans-serif;
 }
 
-.navbar{
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--ff-primary);
+    font-weight: 400;
+    font-size: clamp(14px, 1.2vw, 2rem);
+    line-height: 1.6;
+    color: var(--clr-neutral-900);
+    background-color: var(--clr-neutral-100);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: var(--clr-primary-500)
+}
+
+h1, h2, h3 {
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1;
+}
+
+h2, h3, p {
+    margin-bottom: 1em;
+}
+
+@media (min-width: 50em) {
+    h2, h3, p {
+        margin-bottom: 2rem;
+    }
+}
+
+h2 {
+    font-size: 1.3em;
+}
+
+.bg-light {
+    background-color: var(--clr-primary-200);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.navbar {
     width: 100%;
     height: 10vh;
     margin: 1.5rem 0;
-    border: 1px solid #E2E5E6;
+    border: 1px solid var(--clr-neutral-200);
     padding: 2.5rem;
     display: flex;
     justify-content: space-around;
@@ -20,31 +82,97 @@ url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Mulish:it
 }
 
 .logo {
-  color: #3C64B1;
-  font-family: Lato;
-  font-weight: normal;
-  text-decoration: none;
+    color: var(--clr-primary-500);
+    font-family: var(--ff-accent);
+    font-size: 1.6em;
 }
-      
-ul{
+
+ul {
     display: flex;
 }
-      
-li{
+
+li {
     padding: 1rem;
     list-style-type: none;
 }
-      
-li a{
+
+li a {
     text-decoration: none;
     color: black;
 }
-      
-.profile-buttons a{
+
+button,
+.button-style {
     padding: 0.5rem 1rem;
-    margin: 0.5rem;
-    text-decoration: none;
-    color: white;
-    background: #3C64B1;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: var(--clr-neutral-100);
+    background: var(--clr-primary-500);
+}
+
+button + button,
+.button-style + .button-style {
+    margin-left: 0.5rem;
+}
+
+.button-style:hover,
+.button-style:focus,
+button:hover,
+button:focus {
+    background: var(--clr-primary-700);
+    color: var(--clr-neutral-100);
+}
+
+.profile-buttons {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.25);
+}
+
+.container {
+    margin-inline: auto;
+    width: min(90%, 70.5rem);
+}
+
+.main-ribbon {
+    width: 100%;
+    padding: 3rem 0;
+    margin-block: auto;
+}
+
+@media (min-width: 50em) {
+    .main-ribbon {
+        padding: 7rem 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-45%);
+        transform: translateY(-45%);
+    }
+}
+
+.split {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 50em) {
+    .split > * + * {
+        margin-top: 3em;
+    }
+}
+
+@media (min-width: 50em) {
+    .split {
+        flex-direction: row;
+    }
+
+    .split > * {
+        flex-basis: 100%;
+    }
+
+    .split > * + * {
+        margin-left: 2em;
+    }
+}
+
+.vertically-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
