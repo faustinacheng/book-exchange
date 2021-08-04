@@ -1,54 +1,43 @@
 {% extends 'base.html' %}
 
-{% block title %}
-    Register Page
-{% endblock %}
-
 {% block content %}
-    <div class="register-form">
 
-        <h1>You're on your way to getting new books</h1>
+<div class="main-ribbon bg-light">
+    <div class="container container--narrow">
+        <h2>You're on your way to getting new books</h2>
         <p>All we need is your name and email!</p>
-    
-        <form method="POST" class="">
+
+        <form method="POST" class="form--narrow">
             {{ form.hidden_tag() }}
 
-            {{ form.name.label() }}
-            {{ form.name(class="", placeholder="Name") }}
+            <div class="form-row">
+                {{ form.name.label() }}
+                {{ form.name(class="input--narrow", placeholder="Name") }}
+            </div>
 
-            {{ form.email_address.label() }}
-            {{ form.email_address(class="", placeholder="Email Address") }}
+            <div class="form-row">
+                {{ form.email_address.label() }}
+                {{ form.email_address(class="input--narrow", placeholder="Email Address") }}
+            </div>
 
-            {{ form.password1.label() }}
-            {{ form.password1(class="", placeholder="Password") }}
+            <div class="form-row">
+                {{ form.password1.label() }}
+                {{ form.password1(class="input--narrow", placeholder="Password (min. 6 chars)") }}
+            </div>
 
-            {{ form.password2.label() }}
-            {{ form.password2(class="", placeholder="Confirm Password") }}
+            <div class="form-row">
+                {{ form.password2.label() }}
+                {{ form.password2(class="input--narrow", placeholder="Confirm Password") }}
+            </div>
 
-            {{ form.submit(class="") }}
+            {{ form.submit(class="button-style") }}
 
-            <div class="checkbox mb-3">
-                <p>Already have an account?</p><a class="" href="{{ url_for('login_page') }}">Login here</a>
-             </div>
+            <center><p>Already have an account? <a class="" href="{{ url_for('login_page') }}">Login here</a></p>
+            </center>
 
         </form>
-
     </div>
+</div>
 
-    <style>
-        .register-form{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        form{
-            display: flex;
-            flex-direction: column;
-        }
-    </style>
 
 {% endblock %}
