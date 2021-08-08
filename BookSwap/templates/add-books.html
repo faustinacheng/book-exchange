@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main-ribbon bg-light">
+    <div class="container container--narrow">
+        <h2>Find the book you want to add</h2>
+
+
+        <form method="POST" class="form--narrow">
+            {{ form.hidden_tag() }}
+
+            <div class="form-row">
+                {{ form.title.label() }}
+                {{ form.title(class='input--narrow', placeholder='Title') }}
+            </div>
+
+            <div class="form-row">
+                {{ form.author.label() }}
+                {{ form.author(class='input--narrow', placeholder='Author(s)') }}
+            </div>
+
+            {{ form.submit(class="button-style") }}
+
+        </form>
+    </div>
+</div>
+
+<div class="search-results">
+    {% for result in search_data %}
+    <div class="single-result">
+        {{ result.title }}
+        {{ result.authors }}
+        {% if result.subtitle %}
+        {{ result.subtitle }}
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

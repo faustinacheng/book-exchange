@@ -17,7 +17,8 @@ class RegisterForm(FlaskForm):
             raise ValidationError('Email Address already exists! Please try a different email address')
 
     name = StringField(label='Name:', validators=[Length(min=2, max=50), DataRequired()])
-    email_address = StringField(label='Email Address:', validators=[Email(message='Email address is invalid.'), DataRequired()])
+    email_address = StringField(label='Email Address:',
+                                validators=[Email(message='Email address is invalid.'), DataRequired()])
     password1 = PasswordField(label='Password:',
                               validators=[Length(min=6, message='Password must be at least 6 characters long.'),
                                           DataRequired()])
@@ -25,3 +26,9 @@ class RegisterForm(FlaskForm):
                               validators=[EqualTo(fieldname='password1', message='Passwords do not match.'),
                                           DataRequired()])
     submit = SubmitField(label='Sign Up')
+
+
+class AddBooksForm(FlaskForm):
+    title = StringField(label='Title:')
+    author = StringField(label='Author:')
+    submit = SubmitField(label='Search')
