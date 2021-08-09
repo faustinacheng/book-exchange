@@ -2,39 +2,50 @@
 
 {% block content %}
 
-<div class="search-ribbon bg-light">
-    <div class="container">
+<div class='search-ribbon bg-light'>
+    <div class='container'>
         <h4>Find the book you want to add</h4>
 
-        <form method="POST" class="form--search">
+        <form method='POST' class='form--search'>
             {{ form.hidden_tag() }}
 
             {{ form.title(class='input--search', placeholder='Title') }}
 
             {{ form.author(class='input--search', placeholder='Author(s)') }}
 
-            {{ form.submit(class="button-style") }}
+            {{ form.submit(class='button-style') }}
         </form>
     </div>
 </div>
 
-<div class="container search-results">
+<div class='container search-results'>
     {% for result in search_data %}
-    <div class="book-card">
-        <div class="cover">
+    <div class='book-card'>
+        <div class='cover'>
             {% if result.image %}
-            <img src="{{ result.image }}" alt="{{ result.title }} book cover">
+            <img src='{{ result.image }}' alt='{{ result.title }} book cover'>
             {% else %}
-            <div class="cover-placeholder">
-                <i class="fas fa-book-open"></i>
+            <div class='cover-placeholder'>
+                <i class='fas fa-book-open'></i>
             </div>
             {% endif %}
         </div>
-        {{ result.title }}
-        {{ result.authors }}
-        {% if result.subtitle %}
-        {{ result.subtitle }}
-        {% endif %}
+        <div class='book-info'>
+            <p class='book-title'>{{ result.title }}</p>
+            {% if result.subtitle %}
+            <p class='book-subtitle'>{{ result.subtitle }}</p>
+            {% endif %}
+            <p class='book-author'>
+                By
+                {% if result.authors|length > 1 %}
+                {{ ', '.join(result.authors) }}
+                {% else %}
+                {{ result.authors[0] }}
+                {% endif %}
+
+            </p>
+
+        </div>
     </div>
     {% endfor %}
 </div>

@@ -353,6 +353,15 @@ input {
     padding: 0.5em;
 }
 
+.book-card {
+    display: flex;
+    flex-direction: row;
+}
+
+.cover {
+    flex-shrink: 0;
+}
+
 .cover > * {
     width: 128px;
     height: 194px;
@@ -374,5 +383,14 @@ input {
 .cover-placeholder i {
     font-size: 2em;
     color: var(--clr-primary-500);
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-info p {
+    margin-bottom: 0;
 }
 
