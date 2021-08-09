@@ -42,8 +42,10 @@
                 {% else %}
                 {{ result.authors[0] }}
                 {% endif %}
-
             </p>
+            {% if result.description %}
+            <p class="book-description">{{ result.description }}</p>
+            {% endif %}
 
         </div>
     </div>
