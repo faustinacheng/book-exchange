@@ -2,26 +2,18 @@
 
 {% block content %}
 
-<div class="main-ribbon bg-light">
-    <div class="container container--narrow">
-        <h2>Find the book you want to add</h2>
+<div class="search-ribbon bg-light">
+    <div class="container">
+        <h4>Find the book you want to add</h4>
 
-
-        <form method="POST" class="form--narrow">
+        <form method="POST" class="form--search">
             {{ form.hidden_tag() }}
 
-            <div class="form-row">
-                {{ form.title.label() }}
-                {{ form.title(class='input--narrow', placeholder='Title') }}
-            </div>
+            {{ form.title(class='input--search', placeholder='Title') }}
 
-            <div class="form-row">
-                {{ form.author.label() }}
-                {{ form.author(class='input--narrow', placeholder='Author(s)') }}
-            </div>
+            {{ form.author(class='input--search', placeholder='Author(s)') }}
 
             {{ form.submit(class="button-style") }}
-
         </form>
     </div>
 </div>

@@ -52,6 +52,10 @@ h2, h3, p {
     margin-bottom: 1em;
 }
 
+h4 {
+    margin-bottom: 0.5em;
+}
+
 @media (min-width: 50em) {
     h2, h3, p {
         margin-bottom: 2rem;
@@ -191,7 +195,7 @@ li a {
 
 .container {
     margin-inline: auto;
-    width: min(90%, 70.5rem);
+    width: min(90%, 72rem);
 }
 
 .container--narrow {
@@ -257,6 +261,20 @@ li a {
     justify-content: center;
 }
 
+.full-width {
+    width: 100%;
+}
+
+.search-ribbon {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    padding: 2rem 0;
+    margin-block: auto;
+    height: auto;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -306,5 +324,32 @@ input {
 
 .form--narrow > * + * {
     margin-top: 1.5rem;
+}
+
+.form--search {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+@media (min-width: 50em) {
+    .form--search > *:not(:nth-child(2)) {
+        margin-left: 1rem;
+    }
+}
+
+@media (max-width: 50em) {
+    .form--search {
+        flex-direction: column;
+    }
+
+    .form--search > *:not(:nth-child(2)) {
+        margin-top: 0.5rem;
+    }
+}
+
+.input--search {
+    flex: 1;
+    padding: 0.5em;
 }
 

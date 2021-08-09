@@ -96,7 +96,6 @@ def add_books():
             }
 
             search_data.append(entry)
-        print(request.form.get("author"))
 
     return render_template('add-books.html', form=form, search_data=search_data)
 
