@@ -18,9 +18,18 @@
     </div>
 </div>
 
-<div class="search-results">
+<div class="container search-results">
     {% for result in search_data %}
-    <div class="single-result">
+    <div class="book-card">
+        <div class="cover">
+            {% if result.image %}
+            <img src="{{ result.image }}" alt="{{ result.title }} book cover">
+            {% else %}
+            <div class="cover-placeholder">
+                <i class="fas fa-book-open"></i>
+            </div>
+            {% endif %}
+        </div>
         {{ result.title }}
         {{ result.authors }}
         {% if result.subtitle %}

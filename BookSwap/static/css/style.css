@@ -353,3 +353,26 @@ input {
     padding: 0.5em;
 }
 
+.cover > * {
+    width: 128px;
+    height: 194px;
+}
+
+.cover-placeholder {
+    background: repeating-linear-gradient(
+            45deg,
+            var(--clr-primary-200),
+            var(--clr-primary-200) 2px,
+            var(--clr-neutral-100) 2px,
+            var(--clr-neutral-100) 6px
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cover-placeholder i {
+    font-size: 2em;
+    color: var(--clr-primary-500);
+}
+
