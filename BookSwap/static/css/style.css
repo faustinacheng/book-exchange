@@ -106,11 +106,20 @@ img {
     width: 100%;
     text-align: center;
     font-size: 0.8em;
-    background-color: rgba(61, 126, 255, 0.3);
+    background-color: rgb(166, 192, 243);
     padding-block: 0.3rem;
     animation-name: fadeOut;
     animation-duration: 3000ms;
     animation-fill-mode: forwards;
+    z-index: 99;
+}
+
+.flashed_message--message {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em;
+    background-color: rgb(166, 192, 243);
+    padding-block: 0.3rem;
     z-index: 99;
 }
 
@@ -370,7 +379,7 @@ input {
 .cover > * {
     width: 128px;
     height: 194px;
-    margin-bottom:0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .cover-placeholder {

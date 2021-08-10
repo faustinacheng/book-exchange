@@ -21,7 +21,7 @@ def login_page():
         if attempted_user and attempted_user.check_password(attempted_password=form.password.data):
             login_user(attempted_user)
             flash(f'Welcome back, {attempted_user.name}!', category='success')
-            return redirect(url_for('home_page'))
+            return redirect(request.args.get('next') or url_for('home_page'))
         else:
             flash('Email address or password is not correct! Please try again', category='error')
 
@@ -55,6 +55,7 @@ def register_page():
 
 
 @app.route('/add-books', methods=['GET', 'POST'])
+@login_required
 def add_books():
     search_form = AddBooksSearch()
     add_form = AddBooksForm()
