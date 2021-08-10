@@ -15,6 +15,7 @@ def load_user(id):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(length=30), nullable=False, unique=False)
+    username = db.Column(db.String(length=30), index=True, nullable=False, unique=True)
     email_address = db.Column(db.String(length=50), index=True, nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
     books = db.relationship("Book", backref="owned_user", lazy=True)
@@ -39,10 +40,10 @@ class Book(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     volume_id = db.Column(db.String(length=15), index=True, nullable=False)
     title = db.Column(db.String(length=150), index=True, nullable=True, unique=False)
-    author = db.Column(postgresql.ARRAY(db.String(length=100)), index=True, nullable=True, unique=False)
+    author = db.Column(db.String(length=500), index=True, nullable=True, unique=False)
     subtitle = db.Column(db.String(length=500), nullable=True, unique=False)
     description = db.Column(db.Text(), nullable=True, unique=False)
-    categories = db.Column(postgresql.ARRAY(db.String(length=50)), index=True, nullable=True, unique=False)
+    categories = db.Column(db.String(length=200), index=True, nullable=True, unique=False)
     image = db.Column(db.String(length=150), nullable=True, unique=False)
     owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
 

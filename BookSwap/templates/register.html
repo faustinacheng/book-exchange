@@ -5,7 +5,6 @@
 <div class="main-ribbon bg-light">
     <div class="container container--narrow">
         <h2>You're on your way to getting new books</h2>
-        <p>All we need is your name and email!</p>
 
         <form method="POST" class="form--narrow">
             {{ form.hidden_tag() }}
@@ -13,6 +12,11 @@
             <div class="form-row">
                 {{ form.name.label() }}
                 {{ form.name(class="input--narrow", placeholder="Name") }}
+            </div>
+
+            <div class="form-row">
+                {{ form.username.label() }}
+                {{ form.username(class="input--narrow", placeholder="Username (4-30 chars)") }}
             </div>
 
             <div class="form-row">

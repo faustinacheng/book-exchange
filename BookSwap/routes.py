@@ -1,7 +1,7 @@
 from BookSwap import app, db
 from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, logout_user, login_required, current_user
-from BookSwap.models import User
+from BookSwap.models import User, Book
 from BookSwap.forms import LoginForm, RegisterForm, AddBooksSearch, AddBooksForm
 import requests
 from urllib import parse
@@ -17,13 +17,13 @@ def home_page():
 def login_page():
     form = LoginForm()
     if form.validate_on_submit():
-        attempted_user = User.query.filter_by(email_address=form.email_address.data).first()
+        attempted_user = User.query.filter_by(username=form.username.data).first()
         if attempted_user and attempted_user.check_password(attempted_password=form.password.data):
             login_user(attempted_user)
             flash(f'Welcome back, {attempted_user.name}!', category='success')
             return redirect(request.args.get('next') or url_for('home_page'))
         else:
-            flash('Email address or password is not correct! Please try again', category='error')
+            flash('Username or password is not correct! Please try again', category='error')
 
     return render_template('login.html', form=form)
 
@@ -40,6 +40,7 @@ def register_page():
     form = RegisterForm()
     if form.validate_on_submit():
         user_to_create = User(name=form.name.data,
+                              username=form.username.data,
                               email_address=form.email_address.data,
                               password=form.password1.data)
         db.session.add(user_to_create)
@@ -100,17 +101,21 @@ def add_books():
 
                 search_data.append(entry)
 
+
     if 'book-author' in request.form:
-        print(request.form.get('book-volume'))
-        print(request.form.get('book-title'))
-        print(request.form.get('book-author'))
-        print(request.form.get('book-subtitle'))
-        print(request.form.get('book-description'))
-        print(request.form.get('book-categories'))
-        print(request.form.get('book-image'))
+        new_book = Book(volume_id=request.form.get('book-volume'),
+                        title=request.form.get('book-title'),
+                        author=request.form.get('book-author'),
+                        subtitle=request.form.get('book-subtitle'),
+                        description=request.form.get('book-description'),
+                        categories=request.form.get('book-categories'),
+                        image=request.form.get('book-image'),
+                        owner=current_user.id)
 
+        db.session.add(new_book)
+        db.session.commit()
 
-        # flash(f'{search_data[int(request.form.get("add_book"))]["title"]} added!', category='success')
+        flash(f'{request.form.get("book-title")} added!', category='success')
 
     return render_template('add-books.html', search_form=search_form, add_form=add_form, search_data=search_data)
 
