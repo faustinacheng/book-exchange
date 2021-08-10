@@ -51,3 +51,12 @@ class Book(db.Model):
 
     def __repr__(self):
         return f'Book Title: {self.title}'
+
+class Trades(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    seller = db.Column(db.Integer(), db.ForeignKey('users.id'), nullable=False)
+    buyer = db.Column(db.Integer(), db.ForeignKey('users.id'), nullable=False)
+    seller_book = db.Column(db.Integer(), db.ForeignKey('book.id'), nullable=False)
+    buyer_book = db.Column(db.Integer(), db.ForeignKey('book.id'), nullable=True)
+    status = db.Column(db.String(length=20), index=True, nullable=False)
+
