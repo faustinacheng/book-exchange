@@ -70,36 +70,44 @@ def add_books():
                     'q': f'intitle:{request.form.get("title")}',
                     'printType': 'books',
                     'langRestrict': 'en',
+                    'maxResults': '30'
                 }
             elif request.form.get('title') == '':
                 search_params = {
                     'q': f'inauthor:{request.form.get("author")}',
                     'printType': 'books',
                     'langRestrict': 'en',
+                    'maxResults': '30'
                 }
             else:
                 search_params = {
                     'q': f'inauthor:{request.form.get("author")}+intitle:{request.form.get("title")}',
                     'printType': 'books',
                     'langRestrict': 'en',
-                    'projection': 'lite'
+                    'projection': 'lite',
+                    'maxResults': '30'
                 }
 
             r = requests.get(search_url, params=parse.urlencode(search_params))
 
-            results = r.json()['items']
-            for result in results:
-                entry = {
-                    'volume_id': result['id'],
-                    'title': result['volumeInfo'].get('title'),
-                    'authors': result['volumeInfo'].get('authors'),
-                    'subtitle': result['volumeInfo'].get('subtitle'),
-                    'description': result['volumeInfo'].get('description'),
-                    'categories': result['volumeInfo'].get('categories'),
-                    'image': result['volumeInfo'].get('imageLinks', {}).get('thumbnail')
-                }
+            results = r.json().get('items')
 
-                search_data.append(entry)
+            if results:
+                for result in results:
+                    entry = {
+                        'volume_id': result['id'],
+                        'title': result['volumeInfo'].get('title'),
+                        'authors': result['volumeInfo'].get('authors'),
+                        'subtitle': result['volumeInfo'].get('subtitle'),
+                        'description': result['volumeInfo'].get('description'),
+                        'categories': result['volumeInfo'].get('categories'),
+                        'image': result['volumeInfo'].get('imageLinks', {}).get('thumbnail')
+                    }
+
+                    search_data.append(entry)
+
+            else:
+                flash('No results found. Please try another search.', category='error')
 
 
     if 'book-author' in request.form:

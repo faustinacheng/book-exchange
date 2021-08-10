@@ -363,11 +363,4 @@ button {
     -moz-appearance: none;
 }
 
-input:focus,
-select:focus,
-textarea:focus,
-button:focus,
-input:focus-visible {
-  outline: none;
-}
 
