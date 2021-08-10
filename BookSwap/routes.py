@@ -1,7 +1,7 @@
 from BookSwap import app, db
 from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, logout_user, login_required, current_user
-from BookSwap.models import User, Book
+from BookSwap.models import Users, Book
 from BookSwap.forms import LoginForm, RegisterForm, AddBooksSearch, AddBooksForm
 import requests
 from urllib import parse
@@ -17,7 +17,7 @@ def home_page():
 def login_page():
     form = LoginForm()
     if form.validate_on_submit():
-        attempted_user = User.query.filter_by(username=form.username.data).first()
+        attempted_user = Users.query.filter_by(username=form.username.data).first()
         if attempted_user and attempted_user.check_password(attempted_password=form.password.data):
             login_user(attempted_user)
             flash(f'Welcome back, {attempted_user.name}!', category='success')
@@ -39,7 +39,7 @@ def logout_page():
 def register_page():
     form = RegisterForm()
     if form.validate_on_submit():
-        user_to_create = User(name=form.name.data,
+        user_to_create = Users(name=form.name.data,
                               username=form.username.data,
                               email_address=form.email_address.data,
                               password=form.password1.data)
@@ -108,7 +108,6 @@ def add_books():
 
             else:
                 flash('No results found. Please try another search.', category='error')
-
 
     if 'book-author' in request.form:
         new_book = Book(volume_id=request.form.get('book-volume'),

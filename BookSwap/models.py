@@ -1,24 +1,26 @@
 from BookSwap import db, login_manager
 from BookSwap import bcrypt
 from flask_login import UserMixin
-from sqlalchemy.dialects import postgresql
+
 
 @login_manager.user_loader
 def load_user(id):
-    return User.query.get(int(id))
+    return Users.query.get(int(id))
+
 
 # wishlist = db.Table('wishlist',
 #     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
 #     db.Column('book_id', db.Integer, db.ForeignKey('book.id'))
 # )
 
-class User(db.Model, UserMixin):
+class Users(db.Model, UserMixin):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(length=30), nullable=False, unique=False)
     username = db.Column(db.String(length=30), index=True, nullable=False, unique=True)
     email_address = db.Column(db.String(length=50), index=True, nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
     books = db.relationship("Book", backref="owned_user", lazy=True)
+
     # wishlist = db.relationship('Book', secondary=wishlist, backref=db.backref('wishlisted_by', lazy='dynamic'))
 
     @property
@@ -45,8 +47,7 @@ class Book(db.Model):
     description = db.Column(db.Text(), nullable=True, unique=False)
     categories = db.Column(db.String(length=200), index=True, nullable=True, unique=False)
     image = db.Column(db.String(length=150), nullable=True, unique=False)
-    owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    owner = db.Column(db.Integer(), db.ForeignKey('users.id'))
 
     def __repr__(self):
         return f'Book Title: {self.title}'
-    
