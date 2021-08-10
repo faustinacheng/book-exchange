@@ -389,11 +389,6 @@ input {
     column-gap: 1em;
 }
 
-.book-card::after {
-    width: 100%;
-    background: red;
-}
-
 .cover_and_button {
     grid-area: cover;
 }
