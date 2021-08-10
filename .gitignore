@@ -3,3 +3,4 @@
 **/HTMLBoilerplate.html
 **/apikey.py
 .idea/
+.env

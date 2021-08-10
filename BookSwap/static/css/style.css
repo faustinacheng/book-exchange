@@ -356,6 +356,11 @@ input {
 .book-card {
     display: flex;
     flex-direction: row;
+    background: red;
+}
+
+.cover_and_button {
+    flex-shrink: 0;
 }
 
 .cover {
@@ -365,6 +370,7 @@ input {
 .cover > * {
     width: 128px;
     height: 194px;
+    margin-bottom:0.5rem;
 }
 
 .cover-placeholder {
@@ -392,5 +398,9 @@ input {
 
 .book-info p {
     margin-bottom: 0;
+}
+
+.book-description {
+    overflow: hidden;
 }
 

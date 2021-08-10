@@ -7,13 +7,14 @@
         <h4>Find the book you want to add</h4>
 
         <form method='POST' class='form--search'>
-            {{ form.hidden_tag() }}
+            {{ search_form.hidden_tag() }}
 
-            {{ form.title(class='input--search', placeholder='Title') }}
+            {{ search_form.title(class='input--search', placeholder='Title') }}
 
-            {{ form.author(class='input--search', placeholder='Author(s)') }}
+            {{ search_form.author(class='input--search', placeholder='Author(s)') }}
 
-            {{ form.submit(class='button-style') }}
+            <input id="search_book" name="search_book" type="hidden">
+            {{ search_form.submit(class='button-style') }}
         </form>
     </div>
 </div>
@@ -21,20 +22,36 @@
 <div class='container search-results'>
     {% for result in search_data %}
     <div class='book-card'>
-        <div class='cover'>
-            {% if result.image %}
-            <img src='{{ result.image }}' alt='{{ result.title }} book cover'>
-            {% else %}
-            <div class='cover-placeholder'>
-                <i class='fas fa-book-open'></i>
+        <div class="cover_and_button">
+            <div class='cover'>
+                {% if result.image %}
+                <img src='{{ result.image }}' alt='{{ result.title }} book cover'>
+                {% else %}
+                <div class='cover-placeholder'>
+                    <i class='fas fa-book-open'></i>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
+            <form method='POST'>
+                {{ add_form.hidden_tag() }}
+                <input type="hidden" id="book-volume" name="book-volume" value="{{ result.volume_id }}">
+                <input type="hidden" id="book-title" name="book-title" value="{{ result.title }}">
+                <input type="hidden" id="book-author" name="book-author" value="{{ result.authors }}">
+                <input type="hidden" id="book-subtitle" name="book-subtitle" value="{{ result.subtitle }}">
+                <input type="hidden" id="book-description" name="book-description" value="{{ result.description }}">
+                <input type="hidden" id="book-categories" name="book-categories" value="{{ result.categories }}">
+                <input type="hidden" id="book-image" name="book-image" value="{{ result.image }}">
+                {{ add_form.submit(class='button-style') }}
+            </form>
+
         </div>
         <div class='book-info'>
+            {{ loop.index0 }}
             <p class='book-title'>{{ result.title }}</p>
             {% if result.subtitle %}
             <p class='book-subtitle'>{{ result.subtitle }}</p>
             {% endif %}
+            {% if result.authors %}
             <p class='book-author'>
                 By
                 {% if result.authors|length > 1 %}
@@ -43,6 +60,7 @@
                 {{ result.authors[0] }}
                 {% endif %}
             </p>
+            {% endif %}
             {% if result.description %}
             <p class="book-description">{{ result.description }}</p>
             {% endif %}

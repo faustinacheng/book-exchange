@@ -2,7 +2,7 @@ from BookSwap import app, db
 from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, logout_user, login_required, current_user
 from BookSwap.models import User
-from BookSwap.forms import LoginForm, RegisterForm, AddBooksForm
+from BookSwap.forms import LoginForm, RegisterForm, AddBooksSearch, AddBooksForm
 import requests
 from urllib import parse
 
@@ -56,46 +56,60 @@ def register_page():
 
 @app.route('/add-books', methods=['GET', 'POST'])
 def add_books():
-    form = AddBooksForm()
+    search_form = AddBooksSearch()
+    add_form = AddBooksForm()
     search_url = 'https://www.googleapis.com/books/v1/volumes?'
     search_data = []
 
     if request.method == 'POST':
-        if request.form.get('author') == '':
-            search_params = {
-                'q': f'intitle:{request.form.get("title")}',
-                'printType': 'books',
-                'langRestrict': 'en',
-            }
-        elif request.form.get('title') == '':
-            search_params = {
-                'q': f'inauthor:{request.form.get("author")}',
-                'printType': 'books',
-                'langRestrict': 'en',
-            }
-        else:
-            search_params = {
-                'q': f'inauthor:{request.form.get("author")}+intitle:{request.form.get("title")}',
-                'printType': 'books',
-                'langRestrict': 'en',
-                'projection': 'lite'
-            }
+        if 'search_book' in request.form:
+            if request.form.get('author') == '':
+                search_params = {
+                    'q': f'intitle:{request.form.get("title")}',
+                    'printType': 'books',
+                    'langRestrict': 'en',
+                }
+            elif request.form.get('title') == '':
+                search_params = {
+                    'q': f'inauthor:{request.form.get("author")}',
+                    'printType': 'books',
+                    'langRestrict': 'en',
+                }
+            else:
+                search_params = {
+                    'q': f'inauthor:{request.form.get("author")}+intitle:{request.form.get("title")}',
+                    'printType': 'books',
+                    'langRestrict': 'en',
+                    'projection': 'lite'
+                }
 
-        r = requests.get(search_url, params=parse.urlencode(search_params))
+            r = requests.get(search_url, params=parse.urlencode(search_params))
 
-        results = r.json()['items']
-        for result in results:
-            entry = {
-                'id': result['id'],
-                'title': result['volumeInfo'].get('title'),
-                'authors': result['volumeInfo'].get('authors'),
-                'subtitle': result['volumeInfo'].get('subtitle'),
-                'description': result['volumeInfo'].get('description'),
-                'categories': result['volumeInfo'].get('categories'),
-                'image': result['volumeInfo'].get('imageLinks', {}).get('thumbnail')
-            }
+            results = r.json()['items']
+            for result in results:
+                entry = {
+                    'volume_id': result['id'],
+                    'title': result['volumeInfo'].get('title'),
+                    'authors': result['volumeInfo'].get('authors'),
+                    'subtitle': result['volumeInfo'].get('subtitle'),
+                    'description': result['volumeInfo'].get('description'),
+                    'categories': result['volumeInfo'].get('categories'),
+                    'image': result['volumeInfo'].get('imageLinks', {}).get('thumbnail')
+                }
 
-            search_data.append(entry)
+                search_data.append(entry)
 
-    return render_template('add-books.html', form=form, search_data=search_data)
+    if 'book-author' in request.form:
+        print(request.form.get('book-volume'))
+        print(request.form.get('book-title'))
+        print(request.form.get('book-author'))
+        print(request.form.get('book-subtitle'))
+        print(request.form.get('book-description'))
+        print(request.form.get('book-categories'))
+        print(request.form.get('book-image'))
+
+
+        # flash(f'{search_data[int(request.form.get("add_book"))]["title"]} added!', category='success')
+
+    return render_template('add-books.html', search_form=search_form, add_form=add_form, search_data=search_data)
 

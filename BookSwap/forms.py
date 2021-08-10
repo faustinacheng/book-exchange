@@ -28,7 +28,10 @@ class RegisterForm(FlaskForm):
     submit = SubmitField(label='Sign Up')
 
 
-class AddBooksForm(FlaskForm):
+class AddBooksSearch(FlaskForm):
     title = StringField(label='Title:')
     author = StringField(label='Author:')
     submit = SubmitField(label='Search')
+
+class AddBooksForm(FlaskForm):
+    submit = SubmitField(label='Add')
