@@ -1,1 +1,1 @@
-web: gunicorn BookSwap:app
+web: flask db upgrade; gunicorn BookSwap:app
